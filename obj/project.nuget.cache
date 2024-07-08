@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8JvhYLYkJHY=",
+  "dgSpecHash": "kppi0pZ5Xrs=",
   "success": true,
-  "projectFilePath": "F:\\CodeRepo\\dotnetApi\\dotnetApi.csproj",
+  "projectFilePath": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\dotnetApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\elton\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "C:\\Users\\elton\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
