@@ -1,20 +1,21 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using dotnetApi;
 
-namespace dotnetApi
+var app = WebApplication.Create(args);
+
+app.MapGet("/{name}", (string name) => GreetFunction.greet(name));
+
+app.MapGet("/sum", ([FromQuery] int num1, [FromQuery] int num2) =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    int sum = GreetFunction.sum(num1, num2);
+    return sum;
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+app.MapPost("/student", ([FromBody] Person request) =>
+{
+    return $"name: {request.Name}, age: {request.Age}, phone: {request.PhoneNumber}";
+});
+
+app.Run();

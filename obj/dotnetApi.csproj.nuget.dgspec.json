@@ -43,49 +43,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Hosting": {
+            "Microsoft.AspNetCore.Http": {
               "target": "Package",
-              "version": "[2.2.7, )"
+              "version": "[2.2.2, )"
             },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+            "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.6, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Hosting": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "MySql.Data": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "MySql.Data.EntityFramework": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "MySql.Data.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.22, )"
-            },
-            "MySqlConnector": {
-              "target": "Package",
-              "version": "[2.3.7, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[8.0.7, )"
             }
           },
           "imports": [
