@@ -14,7 +14,7 @@ namespace dotnetApi.Data
             _configuration = configuration;
         }
 
-        public DbSet<Class> Class { get; set; }
+        public DbSet<Class> Classes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
