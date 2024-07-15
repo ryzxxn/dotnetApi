@@ -5,8 +5,8 @@ namespace dotnetApi // Namespace declaration should be outside the class definit
     public class MySqlDbContext : DbContext
     {
         public DbSet<Student> Student { get; set; } // Use plural for DbSet property names
-
         public DbSet<Course> Course { get; set; }
+        public DbSet<Instructor> Instructor { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
