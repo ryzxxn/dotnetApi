@@ -8521,11 +8521,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\dotnetApi.csproj",
+      "projectUniqueName": "F:\\CodeRepo\\dotnetApi\\dotnetApi.csproj",
       "projectName": "dotnetApi",
-      "projectPath": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\dotnetApi.csproj",
+      "projectPath": "F:\\CodeRepo\\dotnetApi\\dotnetApi.csproj",
       "packagesPath": "C:\\Users\\elton\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\obj\\",
+      "outputPath": "F:\\CodeRepo\\dotnetApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\elton\\AppData\\Roaming\\NuGet\\NuGet.Config"
