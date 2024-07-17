@@ -1,37 +1,38 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using dotnetApi;
+using dotnetApi.Functions; // Adjust the namespace as per your project structure
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Dependecy injection
+// Dependency injection
 builder.Services.AddDbContext<MySqlDbContext>();
-
 var app = builder.Build();
 
-// Create a new student in student
-app.MapPost("/student/create", async (Student student, MySqlDbContext db) =>
+// GET all student data
+app.MapGet("/student", (MySqlDbContext db) =>
 {
-    db.Student.Add(student);
-    await db.SaveChangesAsync();
-    return Results.Ok();
+    return StudentCrud.GetAllStudents(db);
 });
 
-// Delete student from student 
-app.MapDelete("/student/delete", async (Student student, MySqlDbContext db) =>
+// Create a new student row
+app.MapPost("/student/create", async ([FromBody] Student student, MySqlDbContext db) =>
 {
-    var student = await db.Student.FindAsync(student.StudentID); 
-    if (student == null)
-    {
-        return Results.NotFound("Student not found");
-    }
+    return await StudentCrud.CreateStudent(student, db);
+});
 
-    db.Student.Remove(student);
-    await db.SaveChangesAsync();
-    return Results.Ok();
-}); 
+// Delete student using StudentID
+app.MapPost("/student/delete", async ([FromBody] Student student, MySqlDbContext db) =>
+{
+    return await StudentCrud.DeleteStudent(student, db);
+});
+
+// Update Student Data using StudentID
+app.MapPost("/student/update", async ([FromBody] Student updatedStudent, MySqlDbContext db) =>
+{
+    return await StudentCrud.UpdateStudent(updatedStudent, db);
+});
 
 app.Run();
+

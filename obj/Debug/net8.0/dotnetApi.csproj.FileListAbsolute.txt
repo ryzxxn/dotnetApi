@@ -20,3 +20,4 @@ C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Microsoft.EntityFramewo
 C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\MySqlConnector.dll
 C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\elton\Documents\repo\dotnetApi\obj\Debug\net8.0\dotnetApi.csproj.Up2Date
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Newtonsoft.Json.dll
