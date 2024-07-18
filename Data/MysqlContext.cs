@@ -18,30 +18,36 @@ namespace dotnetApi
         }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        // Configure relationships
-        modelBuilder.Entity<StudentCourse>()
-            .HasKey(sc => new { sc.StudentID, sc.CourseID });
+            {
+                // Configure relationships
+                modelBuilder.Entity<StudentCourse>().ToTable("studentscourses");
+                modelBuilder.Entity<Student>().ToTable("students");
+                modelBuilder.Entity<Course>().ToTable("courses");
+                modelBuilder.Entity<Department>().ToTable("departments");
+                modelBuilder.Entity<Instructor>().ToTable("instructors");
+                
+                modelBuilder.Entity<StudentCourse>()
+                    .HasKey(sc => new { sc.StudentID, sc.CourseID });
 
-        modelBuilder.Entity<StudentCourse>()
-            .HasOne(sc => sc.Student)
-            .WithMany(s => s.StudentCourses)
-            .HasForeignKey(sc => sc.StudentID);
+                modelBuilder.Entity<StudentCourse>()
+                    .HasOne(sc => sc.Student)
+                    .WithMany(s => s.StudentCourses)
+                    .HasForeignKey(sc => sc.StudentID);
 
-        modelBuilder.Entity<StudentCourse>()
-            .HasOne(sc => sc.Course)
-            .WithMany(c => c.StudentCourses)
-            .HasForeignKey(sc => sc.CourseID);
+                modelBuilder.Entity<StudentCourse>()
+                    .HasOne(sc => sc.Course)
+                    .WithMany(c => c.StudentCourses)
+                    .HasForeignKey(sc => sc.CourseID);
 
-        modelBuilder.Entity<Course>()
-            .HasOne(c => c.Department)
-            .WithMany(d => d.Course)
-            .HasForeignKey(c => c.DepartmentID);
+                modelBuilder.Entity<Course>()
+                    .HasOne(c => c.Department)
+                    .WithMany(d => d.Courses)
+                    .HasForeignKey(c => c.DepartmentID);
 
-        modelBuilder.Entity<Course>()
-            .HasOne(c => c.Instructor)
-            .WithMany(i => i.Course)
-            .HasForeignKey(c => c.InstructorID);
-    }
+                modelBuilder.Entity<Course>()
+                    .HasOne(c => c.Instructor)
+                    .WithMany(i => i.Courses)
+                    .HasForeignKey(c => c.InstructorID);
+            }
     }
 }

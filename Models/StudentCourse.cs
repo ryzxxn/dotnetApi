@@ -1,8 +1,8 @@
 public class StudentCourse
 {
-    public int StudentID { get; set; }
-    public Student? Student { get; set; }
+    public required int StudentID { get; set; }
+    public required Student Student { get; set; }
 
-    public int CourseID { get; set; }
-    public Course? Course { get; set; }
+    public required int CourseID { get; set; }
+    public required Course Course { get; set; }
 }
