@@ -39,7 +39,6 @@ app.MapGet("/{id}", async (int id, MySqlDbContext db) =>
 {
     try
     {
-        // Retrieve detailed student information based on the provided student ID
         var studentDetails = await db.Students
             .Where(s => s.StudentID == id)
             .Select(s => new
@@ -53,12 +52,12 @@ app.MapGet("/{id}", async (int id, MySqlDbContext db) =>
                     sc.Course?.CourseName,
                     Department = new
                     {
-                        sc.Course?.DepartmentID,
+                        sc.Course?.Department?.DepartmentID,
                         sc.Course?.Department?.DepartmentName
                     },
                     Instructor = new
                     {
-                        sc.Course?.InstructorID,
+                        sc.Course?.Instructor?.InstructorID,
                         sc.Course?.Instructor?.FirstName,
                         sc.Course?.Instructor?.LastName
                     }
@@ -75,7 +74,6 @@ app.MapGet("/{id}", async (int id, MySqlDbContext db) =>
     }
     catch (Exception ex)
     {
-        // Handle exceptions and return appropriate error response
         Console.WriteLine($"Error fetching student details: {ex.Message}");
         return Results.BadRequest("Failed to fetch student details.");
     }

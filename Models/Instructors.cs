@@ -6,4 +6,5 @@ public class Instructor
     public string? Status { get; set; }
     public string? HireDate { get; set; }
     public int AnnualSalary { get; set; }
+    public ICollection<Course>? Course { get; set; }
 }
