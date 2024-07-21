@@ -80,12 +80,12 @@ app.MapGet("/api/instructors", () =>
     return InstructorCrud.GetAllInstructors(db);
 });
 
-app.MapPost("/api/instructorcreate", async ([FromBody] Instructor instructor, MySqlDbContext db) =>
+app.MapPost("/api/instructorcreate", async (Instructor instructor, MySqlDbContext db) =>
 {
     return await InstructorCrud.CreateInstructor(instructor, db);
 });
 
-app.MapPut("/api/instructorupdate", async ([FromBody] Instructor updatedInstructor, MySqlDbContext db) =>
+app.MapPut("/api/instructorupdate", async (Instructor updatedInstructor, MySqlDbContext db) =>
 {
     return await InstructorCrud.UpdateInstructor(updatedInstructor, db);
 });

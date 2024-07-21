@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 
 namespace dotnetApi
 {
@@ -12,6 +13,9 @@ namespace dotnetApi
         {
             try
             {
+                // Log received instructor object
+                Console.WriteLine($"Received Instructor: {JsonSerializer.Serialize(instructor)}");
+
                 // Check for null instructor
                 if (instructor == null)
                 {
@@ -26,6 +30,7 @@ namespace dotnetApi
                 if (!isValid)
                 {
                     var errors = validationResults.Select(vr => vr.ErrorMessage).ToList();
+                    Console.WriteLine($"Validation errors: {JsonSerializer.Serialize(errors)}");
                     return Results.BadRequest(new { Errors = errors });
                 }
 
@@ -59,6 +64,9 @@ namespace dotnetApi
         {
             try
             {
+                // Log received instructor object
+                Console.WriteLine($"Received Instructor: {JsonSerializer.Serialize(instructor)}");
+
                 var existingInstructor = await db.Instructors.FindAsync(instructor.InstructorID);
                 if (existingInstructor == null)
                 {
@@ -94,6 +102,9 @@ namespace dotnetApi
         {
             try
             {
+                // Log instructor ID to be deleted
+                Console.WriteLine($"Deleting Instructor ID: {instructorID}");
+
                 var existingInstructor = await db.Instructors
                     .Include(i => i.Department) // Include related department if needed
                     .FirstOrDefaultAsync(i => i.InstructorID == instructorID);
@@ -125,42 +136,69 @@ namespace dotnetApi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static IResult GetAllInstructors(MySqlDbContext db)
         {
-            var instructorData = db.Instructors.Select(i => new
+            try
             {
-                i.InstructorID,
-                i.FirstName,
-                i.LastName,
-                i.Status,
-                i.HireDate,
-                i.AnnualSalary,
-                i.DepartmentID
-            }).ToList();
+                var instructorData = db.Instructors.Select(i => new
+                {
+                    i.InstructorID,
+                    i.FirstName,
+                    i.LastName,
+                    i.Status,
+                    i.HireDate,
+                    i.AnnualSalary,
+                    i.DepartmentID
+                }).ToList();
 
-            return Results.Ok(instructorData);
+                Console.WriteLine($"Retrieved Instructors: {JsonSerializer.Serialize(instructorData)}");
+
+                return Results.Ok(instructorData);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                Console.WriteLine($"Error retrieving instructors: {ex.Message}");
+                return Results.Problem($"Failed to retrieve instructors: {ex.Message}", statusCode: 500);
+            }
         }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static async Task<IResult> GetInstructorById(int instructorID, MySqlDbContext db)
         {
-            var instructor = await db.Instructors
-                .Include(i => i.Department)
-                .FirstOrDefaultAsync(i => i.InstructorID == instructorID);
-
-            if (instructor == null)
+            try
             {
-                return Results.NotFound("Instructor not found");
+                // Log instructor ID to be retrieved
+                Console.WriteLine($"Retrieving Instructor ID: {instructorID}");
+
+                var instructor = await db.Instructors
+                    .Include(i => i.Department)
+                    .FirstOrDefaultAsync(i => i.InstructorID == instructorID);
+
+                if (instructor == null)
+                {
+                    return Results.NotFound("Instructor not found");
+                }
+
+                var result = new
+                {
+                    instructor.InstructorID,
+                    instructor.FirstName,
+                    instructor.LastName,
+                    instructor.Status,
+                    instructor.HireDate,
+                    instructor.AnnualSalary,
+                    instructor.DepartmentID
+                };
+
+                Console.WriteLine($"Retrieved Instructor: {JsonSerializer.Serialize(result)}");
+
+                return Results.Ok(result);
             }
-
-            return Results.Ok(new
+            catch (Exception ex)
             {
-                instructor.InstructorID,
-                instructor.FirstName,
-                instructor.LastName,
-                instructor.Status,
-                instructor.HireDate,
-                instructor.AnnualSalary,
-                instructor.DepartmentID
-            });
+                // Handle other exceptions
+                Console.WriteLine($"Error retrieving instructor: {ex.Message}");
+                return Results.Problem($"Failed to retrieve instructor: {ex.Message}", statusCode: 500);
+            }
         }
     }
 }
