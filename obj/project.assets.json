@@ -9006,11 +9006,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\CodeRepo\\dotnetApi\\dotnetApi.csproj",
+      "projectUniqueName": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\dotnetApi.csproj",
       "projectName": "dotnetApi",
-      "projectPath": "F:\\CodeRepo\\dotnetApi\\dotnetApi.csproj",
+      "projectPath": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\dotnetApi.csproj",
       "packagesPath": "C:\\Users\\elton\\.nuget\\packages\\",
-      "outputPath": "F:\\CodeRepo\\dotnetApi\\obj\\",
+      "outputPath": "C:\\Users\\elton\\Documents\\repo\\dotnetApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\elton\\AppData\\Roaming\\NuGet\\NuGet.Config"

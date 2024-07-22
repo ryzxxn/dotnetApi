@@ -13,6 +13,7 @@ namespace dotnetApi
         {
             try
             {
+                Console.WriteLine(JsonSerializer.Serialize(instructor));
                 // Log received instructor object
                 Console.WriteLine($"Received Instructor: {JsonSerializer.Serialize(instructor)}");
 

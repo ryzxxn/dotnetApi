@@ -11,8 +11,8 @@ using dotnetApi;
 namespace dotnetApi.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20240721072633_initial")]
-    partial class initial
+    [Migration("20240722045437_bruh")]
+    partial class bruh
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
