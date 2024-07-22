@@ -192,3 +192,8 @@ C:\Users\elton\Documents\repo\dotnetApi\obj\Debug\net8.0\refint\dotnetApi.dll
 C:\Users\elton\Documents\repo\dotnetApi\obj\Debug\net8.0\dotnetApi.pdb
 C:\Users\elton\Documents\repo\dotnetApi\obj\Debug\net8.0\dotnetApi.genruntimeconfig.cache
 C:\Users\elton\Documents\repo\dotnetApi\obj\Debug\net8.0\ref\dotnetApi.dll
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\elton\Documents\repo\dotnetApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
