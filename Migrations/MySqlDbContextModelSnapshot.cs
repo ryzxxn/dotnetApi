@@ -200,8 +200,8 @@ namespace dotnetApi.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -238,11 +238,11 @@ namespace dotnetApi.Migrations
 
             modelBuilder.Entity("UserUserRole", b =>
                 {
-                    b.Property<int>("UserUserRoletID")
+                    b.Property<int>("UserUserRoleID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserUserRoletID"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserUserRoleID"));
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -250,7 +250,7 @@ namespace dotnetApi.Migrations
                     b.Property<int>("UserRoleID")
                         .HasColumnType("int");
 
-                    b.HasKey("UserUserRoletID");
+                    b.HasKey("UserUserRoleID");
 
                     b.HasIndex("UserID");
 

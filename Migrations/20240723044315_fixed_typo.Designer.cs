@@ -11,8 +11,8 @@ using dotnetApi;
 namespace dotnetApi.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20240722100614_addeduser")]
-    partial class addeduser
+    [Migration("20240723044315_fixed_typo")]
+    partial class fixed_typo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,6 +175,93 @@ namespace dotnetApi.Migrations
                     b.ToTable("StudentCourses");
                 });
 
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserID"));
+
+                    b.Property<string>("CreatedDate")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ModifiedDate")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("UserRole", b =>
+                {
+                    b.Property<int>("UserRoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserRoleID"));
+
+                    b.Property<string>("UserRoleName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("UserRoleID");
+
+                    b.ToTable("UserRole");
+                });
+
+            modelBuilder.Entity("UserUserRole", b =>
+                {
+                    b.Property<int>("UserUserRoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserUserRoleID"));
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserRoleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserUserRoleID");
+
+                    b.HasIndex("UserID");
+
+                    b.HasIndex("UserRoleID");
+
+                    b.ToTable("UserUserRole");
+                });
+
             modelBuilder.Entity("Course", b =>
                 {
                     b.HasOne("Department", "Department")
@@ -224,6 +311,25 @@ namespace dotnetApi.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("UserUserRole", b =>
+                {
+                    b.HasOne("User", "User")
+                        .WithMany("UserUserRoles")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UserRole", "UserRole")
+                        .WithMany("UserUserRoles")
+                        .HasForeignKey("UserRoleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("UserRole");
+                });
+
             modelBuilder.Entity("Department", b =>
                 {
                     b.Navigation("Courses");
@@ -234,6 +340,16 @@ namespace dotnetApi.Migrations
             modelBuilder.Entity("Student", b =>
                 {
                     b.Navigation("StudentCourses");
+                });
+
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Navigation("UserUserRoles");
+                });
+
+            modelBuilder.Entity("UserRole", b =>
+                {
+                    b.Navigation("UserUserRoles");
                 });
 #pragma warning restore 612, 618
         }

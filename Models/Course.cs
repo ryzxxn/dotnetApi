@@ -4,7 +4,7 @@ public class Course
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public required int CourseID { get; set; }
+    public int CourseID { get; set; }
 
     [Required]
     [StringLength(100)]

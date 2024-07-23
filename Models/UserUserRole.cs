@@ -4,7 +4,7 @@ public class UserUserRole
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int UserUserRoletID { get; set; }
+    public int UserUserRoleID { get; set; }
 
     [Required]
     [ForeignKey("User")]
